@@ -1,0 +1,34 @@
+@using wedding_planner.Models
+@model Wedding
+@using Microsoft.AspNetCore.Http
+<div>
+    <a href="/dashboard" class="btn btn-info">Dashboard</a>
+</div>
+<h1>@Model.Husband and @Model.Wife's Wedding</h1>
+<h1>@Model.UserId</h1>
+
+<h3>Date: @Model.dateofWedding.ToString("MMMM dd, yyyy")</h3>
+<h3>Address: @Model.Address</h3>
+
+    @foreach (RSVP r in Model.guestlist)
+    {
+        <ul>
+            <li>@r.User.firstName</li>
+        </ul>
+    }
+}
+
+@{
+    if (Model.UserId == Context.Session.GetInt32("LoggedIn")) 
+    {
+        <div>
+            <a href="/editform/@Model.WeddingId" class="btn btn-warning">Edit</a>
+            <a href="/delete/@Model.WeddingId">Delete</a>
+        </div>
+    }
+
+}
+
+<div>
+    <a href="/logout" class="btn btn-danger">Logout</a>
+</div>

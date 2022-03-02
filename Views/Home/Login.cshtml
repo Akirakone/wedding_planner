@@ -1,0 +1,19 @@
+@using wedding_planner.Models
+@model Login
+
+<h2>Login</h2>
+<form action="login" method="post">
+    <div class="form-group">
+        <label>Email</label>
+        <input asp-for="lEmail" class="form-control" value="a.r@yay.com">
+        <span asp-validation-for="lEmail" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="lPassword">Password</label>
+        <input asp-for="lPassword" class="form-control" value="12345678">
+        <span asp-validation-for="lPassword" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="submit" value="Login" class="btn btn-success">
+    </div>
+</form>

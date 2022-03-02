@@ -1,0 +1,55 @@
+@using wedding_planner.Models
+@model Wedding
+
+<h2> Welcome to the Wedding Planner</h2>
+<div>
+    <a href="/logout" class="btn btn-danger">Logout</a>
+</div>
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Wedding</th>
+            <th>Date</th>
+            <th>Guest</th>
+            <th>Action</th>
+        </tr>
+        @{
+            foreach (Wedding w in ViewBag.AllWeddings)
+            {
+                <tr>
+                    <td><a href="/showOne/{weddingid}">@w.Husband & @w.Wife</a></td>
+                    <td>@w.dateofWedding.ToString("MMM dd yyyy")</td>
+                    <td>@w.guestlist.Count</td>
+                    
+                        @{
+                            if (w.UserId == ViewBag.LoggedIn.UserId)
+                            {
+                                <td>
+                                <a href="/delete/@w.WeddingId">Delete | </a>
+                                <a href="/editform/@w.WeddingId">Edit |</a>
+                                
+                                </td>
+                            }
+                            else if (w.guestlist.Any(f => f.UserId == ViewBag.LoggedIn.UserId))
+                            {
+                                <td><a href="/unRSVP/@w.WeddingId/@ViewBag.LoggedIn.UserId">unRSVP</a></td>
+                            }
+                            else
+                            {
+                                <td><a href="/RSVP/@w.WeddingId/@ViewBag.LoggedIn.UserId">RSVP</a></td>
+                            }
+                        }
+
+
+                    
+                </tr>
+
+            }
+        }
+    </table>
+</div>
+
+
+<div>
+    <a href="/addWedding" class="btn btn-info">New Weding</a>
+</div>

@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@using wedding_planner.Models
+@model User
+
+<div class="text-center row">
+    <div class="col-6">
+        <h2>Register</h2>
+        <form action="register" method="post">
+            <div class="form-group">
+                <label>First Name</label>
+                <input asp-for="firstName" class="form-control">
+                <span asp-validation-for="firstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input asp-for="lastName" class="form-control">
+                <span asp-validation-for="lastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input asp-for="email" class="form-control">
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="">Password</label>
+                <input asp-for="password" class="form-control">
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="">Confirm Password</label>
+                <input asp-for="confirm" class="form-control">
+                <span asp-validation-for="confirm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <div>
+        <partial name="Login">
+    </div>
+</div>
